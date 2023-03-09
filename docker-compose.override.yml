@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+    cleanerdb:
+        container_name: cleanerdb_cont
+        restart: always
+        ports:
+            - "4444:5432" 
+        volumes:
+            - cleanerdb_volume:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_DB=cleanerdb
+            - POSTGRES_USER=cleaneradmin
+            - POSTGRES_PASSWORD=s3l4mun4l3ykumc1nc1hoc4
+    cleanerapi:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_URLS=http://+:80
+        ports:
+            - "8000:80"
+        depends_on:
+            - cleanerdb

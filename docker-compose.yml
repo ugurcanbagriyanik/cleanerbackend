@@ -1,0 +1,24 @@
+version: '3.4'
+services:
+    cleanerdb:
+        image: postgres:14.5-alpine
+        mem_limit: 1g
+    cleanerapi:
+        image: cleanerapi
+        mem_limit: 1g
+        build:
+            context: .
+            dockerfile: Cleaner/Dockerfile
+        environment:
+            - ConnectionStrings__CleanerContext=User Id=cleaneradmin;Password=s3l4mun4l3ykumc1nc1hoc4;Server=cleanerdb;Port=5432;Database=cleanerdb;Integrated Security=true;Pooling=true;
+            - JWTSECRET=ApplicationSecretWhichUsed4Authentication.JwtToken*?xx23.45dsajdnjaIsykKhJdyshahbBHSBDA.HBDSHA33X3SJDNJSAKU.WHDEWO2348nG2mS9ASDrA34oS5D.J.SAD
+            - Logging__LogLevel__Default=Information
+            - Logging__LogLevel__Microsoft.AspNetCore=Warning
+            - Logging__Database__Options__ConnectionString=User Id=cleaneradmin;Password=s3l4mun4l3ykumc1nc1hoc4;Server=cleanerdb;Port=5432;Database=cleanerdb;Integrated Security=true;Pooling=true;
+            - Logging__Database__Options__LogTable=Log
+            - Logging__Database__Options__LogInfoTable=LogAction
+            - Logging__Database__LogLevel__Default=Information
+            - Logging__Database__LogLevel__Microsoft.AspNetCore=Error
+            - Logging__Database__LogLevel__RoundTheCode.LoggerDb=Error
+volumes:
+    cleanerdb_volume:

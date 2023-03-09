@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "identityapi": "StartDebugging",
+        "identitydb": "StartWithoutDebugging",
+        "mapapi": "StartDebugging",
+        "mapdb": "StartWithoutDebugging",
+        "playerbaseapi": "StartDebugging",
+        "playerbasedb": "StartWithoutDebugging",
+        "progressapi": "StartDebugging",
+        "progressdb": "StartWithoutDebugging"
+      }
+    }
+  }
+}
