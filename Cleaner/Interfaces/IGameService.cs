@@ -6,10 +6,10 @@ namespace Cleaner.Interfaces
 {
     public interface IGameService    
     {
-        // Task<TDResponse<ChapterInfoDTO>> GetChapterInfo(BaseRequest req, PlayerDto playerDto);
-        // Task<TDResponse<List<PlayerResearchNodeLevelDTO>>> GetPlayerResearchNodeLevels(BaseRequest req, PlayerDto player);
-        // Task<TDResponse<List<PlayerResearchNodeLevelDTO>>> SetPlayerResearchNodeLevels(
-        //     BaseRequest<List<PlayerResearchNodeLevelDTO>> req, PlayerDto player);
-        // Task<TDResponse> AddProgressList(BaseRequest<List<ProgressDTO>> req, PlayerDto player);
+        Task<TDResponse<List<PlayerBodyPartDTO>>> GetPlayerBodyParts(BaseRequest req, PlayerDTO player);
+        Task<TDResponse<List<PlayerCleanerDTO>>> GetPlayerBodies(BaseRequest req, PlayerDTO player);
+        Task<TDResponse<PlayerWarMachineDTO>> GetPlayerWarMachine(BaseRequest req, PlayerDTO player);
+        Task<TDResponse<EnemyWarMachineDTO>> GetEnemyWarMachine(BaseRequest req, PlayerDTO player);
+        Task<TDResponse> SetPlayerWarMachine(BaseRequest<SetWarMachineReq> req, PlayerDTO player);
     }
 }

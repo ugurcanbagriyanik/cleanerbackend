@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,5 +33,15 @@ namespace SharedLibrary.Models
     public class BaseRequest<T> : BaseRequest
     {
         public T? Data { get; set; } = default;
+        
+        public bool DataIsNullOrEmpty()
+        {
+            if (Data == null || (typeof(T) == typeof(List<>) && ((ICollection<object>)Data).Count == 0))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

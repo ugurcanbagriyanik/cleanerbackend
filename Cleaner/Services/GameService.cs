@@ -77,146 +77,174 @@ namespace Cleaner.Services
         //         return response;
         // }
         //
-        // public async Task<TDResponse<List<PlayerResearchNodeLevelDTO>>> GetPlayerResearchNodeLevels(BaseRequest req, PlayerDto player)
-        // {
-        //     TDResponse<List<PlayerResearchNodeLevelDTO>> response = new TDResponse<List<PlayerResearchNodeLevelDTO>>();
-        //     var info = InfoDetail.CreateInfo(req, "GetPlayerResearchNodeLevels");
-        //     try
-        //     {
-        //         var query = _context.PlayerResearchNodeLevel;
-        //         var playerResearchNodeDtos = await _mapper.ProjectTo<PlayerResearchNodeLevelDTO>(query).ToListAsync();
-        //         
-        //         response.Data = playerResearchNodeDtos;
-        //         response.SetSuccess();
-        //         info.AddInfo(OperationMessages.Success);
-        //         _logger.LogInformation(info.ToString());
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         response.SetError(OperationMessages.DbError);
-        //         info.SetException(e);
-        //         _logger.LogError(info.ToString());
-        //     }
-        //
-        //     return response;
-        // }
-        //
-        // public async Task<TDResponse<List<PlayerResearchNodeLevelDTO>>> SetPlayerResearchNodeLevels(BaseRequest<List<PlayerResearchNodeLevelDTO>> req, PlayerDto player)
-        // {
-        //     TDResponse<List<PlayerResearchNodeLevelDTO>> response = new TDResponse<List<PlayerResearchNodeLevelDTO>>();
-        //     var info = InfoDetail.CreateInfo(req, "SetPlayerResearchNodeLevels");
-        //     try
-        //     {
-        //         if (req.Data==null)
-        //         {
-        //             response.SetError(OperationMessages.InputError);
-        //             info.AddInfo(OperationMessages.InputError);
-        //             _logger.LogInformation(info.ToString());
-        //             return response;
-        //         }
-        //         
-        //         foreach (var ld in req.Data)
-        //         {
-        //             if (ld.Id==0)
-        //             {
-        //                 await _context.AddAsync(new PlayerResearchNodeLevel()
-        //                 {
-        //                     UserId = player.Id,
-        //                     ResearchNodeLevelId = ld.ResearchNodeLevelId
-        //                 });
-        //             }
-        //             else
-        //             {
-        //                 var ent = await _context.PlayerResearchNodeLevel.Where(l => l.UserId == player.Id && l.Id == ld.Id)
-        //                     .FirstOrDefaultAsync();
-        //                 if (ent != null)
-        //                 {
-        //                     ent.ResearchNodeLevelId = ld.ResearchNodeLevelId;
-        //                 }
-        //
-        //             }
-        //             
-        //             await _context.SaveChangesAsync();
-        //
-        //         }
-        //         
-        //         response.SetSuccess();
-        //         info.AddInfo(OperationMessages.Success);
-        //         _logger.LogInformation(info.ToString());
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         response.SetError(OperationMessages.DbError);
-        //         info.SetException(e);
-        //         _logger.LogError(info.ToString());
-        //     }
-        //
-        //     return response;
-        // }
-        //
-        // public async Task<TDResponse> AddProgressList(BaseRequest<List<ProgressDTO>> req, PlayerDto player)
-        // {
-        //     TDResponse response = new TDResponse();
-        //     var info = InfoDetail.CreateInfo(req, "AddProgressList");
-        //
-        //     try
-        //     {
-        //         if (req.Data==null)
-        //         {
-        //             info.AddInfo(OperationMessages.InputError);
-        //             response.SetError(OperationMessages.InputError);
-        //             _logger.LogInformation(info.ToString());
-        //             return response;
-        //         }
-        //         foreach (var p in req.Data)
-        //         {
-        //             var userProgressHistory = new UserProgressHistory();
-        //             userProgressHistory.UserId = player.Id;
-        //             userProgressHistory.LevelId = p.LevelId;
-        //             userProgressHistory.GainedStar = p.StarCount;
-        //             userProgressHistory.BarrierHealth = p.BarrierHealth;
-        //             userProgressHistory.GainedCoin = p.GainedCoin;
-        //             userProgressHistory.SpentCoin = p.SpentCoin;
-        //             userProgressHistory.TotalCoin = p.TotalCoin;
-        //             userProgressHistory.WaveStartTime = p.WaveStartTime.ToDateTimeOffsetUtc() ?? DateTimeOffset.UtcNow;
-        //             userProgressHistory.WaveEndTime = userProgressHistory.WaveStartTime + TimeSpan.FromSeconds(p.TimeSecond);
-        //             await _context.AddAsync(userProgressHistory);
-        //             await _context.SaveChangesAsync();
-        //             await _context.AddRangeAsync(p.EnemyKillList.Select(l => new EnemyKill()
-        //             {
-        //                 UserProgressHistoryId = userProgressHistory.Id,
-        //                 DeadCount = l.DeadCount,
-        //                 EnemyLevelId = l.EnemyLevelId
-        //             }).ToList());
-        //             await _context.SaveChangesAsync();
-        //             await _context.AddRangeAsync(p.TowerProgressList.Select(l=> new TowerProgress()
-        //             {
-        //                 UserProgressHistoryId = userProgressHistory.Id,
-        //                 TowerId = l.TowerId,
-        //                 TowerCount = l.TowerCount,
-        //                 TowerDamage = l.TowerDamage,
-        //                 TowerArmorDamage = l.TowerArmorDamage,
-        //                 TowerDotDamage = l.TowerDotDamage,
-        //                 TowerFireCount = l.TowerFireCount,
-        //                 TowerUpgradeNumber = l.TowerUpgradeNumber
-        //             }).ToList());
-        //             await _context.SaveChangesAsync();
-        //
-        //         }
-        //         
-        //         response.SetSuccess();
-        //         info.AddInfo(OperationMessages.Success);
-        //         _logger.LogInformation(info.ToString());
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         response.SetError(OperationMessages.DbError);
-        //         info.SetException(e);
-        //         _logger.LogError(info.ToString());
-        //     }
-        //
-        //     return response;
-        // }
+        public async Task<TDResponse<List<PlayerBodyPartDTO>>> GetPlayerBodyParts(BaseRequest req, PlayerDTO player)
+        {
+            TDResponse<List<PlayerBodyPartDTO>> response = new TDResponse<List<PlayerBodyPartDTO>>();
+            var info = InfoDetail.CreateInfo(req, "GetPlayerBodyParts");
+            try
+            {
+                var query = _context.PlayerBodyPart
+                    .Include(l=>l.GeneratableBodyPart)
+                    .Where(l=>l.PlayerId==player.Id && l.IsActive).OrderBy(l=>l.GeneratableBodyPart.BodyPartTypeEnumId).ThenBy(l=>l.GeneratableBodyPart.Rarity);
+                var playerBodyParts = await _mapper.ProjectTo<PlayerBodyPartDTO>(query).ToListAsync();
+                
+                response.Data = playerBodyParts;
+                response.SetSuccess();
+                info.AddInfo(OperationMessages.Success);
+                _logger.LogInformation(info.ToString());
+            }
+            catch (Exception e)
+            {
+                response.SetError(OperationMessages.DbError);
+                info.SetException(e);
+                _logger.LogError(info.ToString());
+            }
+        
+            return response;
+        }
+        
+        public async Task<TDResponse<List<PlayerCleanerDTO>>> GetPlayerBodies(BaseRequest req, PlayerDTO player)
+        {
+            TDResponse<List<PlayerCleanerDTO>> response = new TDResponse<List<PlayerCleanerDTO>>();
+            var info = InfoDetail.CreateInfo(req, "GetPlayerBodies");
+            try
+            {
+                var query = _context.PlayerCleaner
+                    .Include(l=>l.GeneratableCleaner)
+                    .Where(l=>l.PlayerId==player.Id && l.IsActive).OrderBy(l=>l.GeneratableCleaner.Rarity).ThenBy(l=>l.GeneratableCleaner.DefaultBattery);
+                var playerBodies = await _mapper.ProjectTo<PlayerCleanerDTO>(query).ToListAsync();
+                
+                response.Data = playerBodies;
+                response.SetSuccess();
+                info.AddInfo(OperationMessages.Success);
+                _logger.LogInformation(info.ToString());
+            }
+            catch (Exception e)
+            {
+                response.SetError(OperationMessages.DbError);
+                info.SetException(e);
+                _logger.LogError(info.ToString());
+            }
+        
+            return response;
+        }
+        
+        public async Task<TDResponse<PlayerWarMachineDTO>> GetPlayerWarMachine(BaseRequest req, PlayerDTO player)
+        {
+            TDResponse<PlayerWarMachineDTO> response = new TDResponse<PlayerWarMachineDTO>();
+            var info = InfoDetail.CreateInfo(req, "GetPlayerWarMachine");
+            try
+            {
+                var query = _context.PlayerWarMachine
+                    .Include(l => l.PlayerCleaner)
+                    .Include(l => l.PlayerWarMachineParts)
+                    .Where(l => l.PlayerCleaner.PlayerId == player.Id && l.IsActive);
+                var playerWarMachineDto = await _mapper.ProjectTo<PlayerWarMachineDTO>(query).FirstOrDefaultAsync();
+                
+                response.Data = playerWarMachineDto;
+                response.SetSuccess();
+                info.AddInfo(OperationMessages.Success);
+                _logger.LogInformation(info.ToString());
+            }
+            catch (Exception e)
+            {
+                response.SetError(OperationMessages.DbError);
+                info.SetException(e);
+                _logger.LogError(info.ToString());
+            }
+        
+            return response;
+        }
+        
+        public async Task<TDResponse<EnemyWarMachineDTO>> GetEnemyWarMachine(BaseRequest req, PlayerDTO player)
+        {
+            TDResponse<EnemyWarMachineDTO> response = new TDResponse<EnemyWarMachineDTO>();
+            var info = InfoDetail.CreateInfo(req, "GetEnemyWarMachine");
+            try
+            {
+                var query = _context.PlayerWarMachine
+                    .Include(l => l.PlayerCleaner)
+                    .ThenInclude(l=>l.Player)
+                    .Include(l => l.PlayerWarMachineParts)
+                    .Where(l => l.PlayerCleaner.PlayerId != player.Id && l.IsActive).OrderBy(r => Guid.NewGuid());
+                var enemyWarMachineDto = await _mapper.ProjectTo<EnemyWarMachineDTO>(query).FirstOrDefaultAsync();
+                
+                response.Data = enemyWarMachineDto;
+                response.SetSuccess();
+                info.AddInfo(OperationMessages.Success);
+                _logger.LogInformation(info.ToString());
+            }
+            catch (Exception e)
+            {
+                response.SetError(OperationMessages.DbError);
+                info.SetException(e);
+                _logger.LogError(info.ToString());
+            }
+        
+            return response;
+        }
+        
+        public async Task<TDResponse> SetPlayerWarMachine(BaseRequest<SetWarMachineReq> req, PlayerDTO player)
+        {
+            TDResponse response = new TDResponse();
+            var info = InfoDetail.CreateInfo(req, "SetPlayerWarMachine");
+        
+            try
+            {
+                if (req.DataIsNullOrEmpty() || req.Data!.PlayerWarMachineParts.IsNullOrEmpty())
+                {
+                    info.AddInfo(OperationMessages.InputError);
+                    response.SetError(OperationMessages.InputError);
+                    _logger.LogInformation(info.ToString());
+                    return response;
+                }
+
+                var q = await _context.PlayerWarMachine.Include(l => l.PlayerWarMachineParts)
+                    .Where(l => l.IsActive && l.PlayerCleaner.PlayerId == player.Id).FirstOrDefaultAsync();
+                if (q != null)
+                {
+                    q.PlayerWarMachineParts.ForEach(l=>l.IsActive=false);
+                    q.IsActive = false;
+                }
+                
+
+                await _context.SaveChangesAsync();
+
+                var entWarMachine = new PlayerWarMachine()
+                {
+                    
+                    Path = req.Data.Path,
+                    IsActive = false,
+                    PlayerCleanerId = req.Data.PlayerCleanerId
+                };
+                await _context.AddAsync(entWarMachine);
+                await _context.SaveChangesAsync();
+
+                var entWarMachineParts = req.Data.PlayerWarMachineParts.Select(l => new PlayerWarMachinePart()
+                {
+                    HolderId = l.HolderId,
+                    IsActive = true,
+                    PlayerBodyPartId = l.PlayerBodyPartId,
+                    PlayerWarMachineId = entWarMachine.Id
+                }).ToList();
+                await _context.AddRangeAsync(entWarMachineParts);
+                entWarMachine.IsActive = true;
+                await _context.SaveChangesAsync();
+                
+                
+                response.SetSuccess();
+                info.AddInfo(OperationMessages.Success);
+                _logger.LogInformation(info.ToString());
+            }
+            catch (Exception e)
+            {
+                response.SetError(OperationMessages.DbError);
+                info.SetException(e);
+                _logger.LogError(info.ToString());
+            }
+        
+            return response;
+         }
         
         
     }

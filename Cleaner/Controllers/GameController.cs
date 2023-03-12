@@ -19,92 +19,112 @@ namespace Cleaner.Controllers
             _service = service;
         }
         
-        //
-        // /// <summary>
-        // /// Chapterin genel infosunu doner
-        // /// </summary>
-        // /// <remarks>
-        // /// ### DETAILS ###
-        // /// <br/>
-        // /// <br/>
-        // /// Input: BaseRequest
-        // /// <br/>
-        // /// Output: TDResponse &lt; ChapterInfoDTO &gt;
-        // /// </remarks>
-        // [LoginRequired]
-        // [HttpPost("GetChapterInfo")]
-        // public async Task<TDResponse> GetChapterInfo([FromBody] BaseRequest req)
-        // {
-        //     var user = (HttpContext.Items["User"] as PlayerDto);
-        //     req.SetUser(user.Id);
-        //     req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
-        //     return await _service.GetChapterInfo(req, user);
-        // }
-        //
-        // /// <summary>
-        // /// playerin research durumunu doner
-        // /// </summary>
-        // /// <remarks>
-        // /// ### DETAILS ###
-        // /// <br/>
-        // /// <br/>
-        // /// Input: BaseRequest
-        // /// <br/>
-        // /// Output: TDResponse &lt; List &lt; PlayerResearchNodeLevelDTO &gt; &gt;
-        // /// </remarks>
-        // [LoginRequired]
-        // [HttpPost("GetPlayerResearchNodeLevels")]
-        // public async Task<TDResponse<List<PlayerResearchNodeLevelDTO>>> GetPlayerResearchNodeLevels([FromBody] BaseRequest req)
-        // {
-        //     var user = (HttpContext.Items["User"] as PlayerDto);
-        //     req.SetUser(user.Id);
-        //     req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
-        //     return await _service.GetPlayerResearchNodeLevels(req, user);
-        // }
-        //
-        // /// <summary>
-        // /// playerin research durumunu setler ve doner
-        // /// </summary>
-        // /// <remarks>
-        // /// ### DETAILS ###
-        // /// <br/>
-        // /// <br/>
-        // /// Input: BaseRequest &lt; List &lt; PlayerResearchNodeLevelDTO &gt; &gt;
-        // /// <br/>
-        // /// Output: TDResponse &lt; List &lt; PlayerResearchNodeLevelDTO &gt; &gt;
-        // /// </remarks>
-        // [LoginRequired]
-        // [HttpPost("SetPlayerResearchNodeLevels")]
-        // public async Task<TDResponse<List<PlayerResearchNodeLevelDTO>>> SetPlayerResearchNodeLevels([FromBody] BaseRequest<List<PlayerResearchNodeLevelDTO>> req)
-        // {
-        //     var user = (HttpContext.Items["User"] as PlayerDto);
-        //     req.SetUser(user.Id);
-        //     req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
-        //     return await _service.SetPlayerResearchNodeLevels(req, user);
-        // }
-        //
-        // /// <summary>
-        // /// Progress eklemek icin kullanilir
-        // /// </summary>
-        // /// <remarks>
-        // /// ### DETAILS ###
-        // /// <br/>
-        // /// <br/>
-        // /// Input: BaseRequest &lt; List &lt; ProgressDTO &gt; &gt;
-        // /// <br/>
-        // /// Output: TDResponse 
-        // /// </remarks>
-        // [LoginRequired]
-        // [HttpPost("AddProgressList")]
-        // public async Task<TDResponse> AddProgressList([FromBody] BaseRequest<List<ProgressDTO>> req)
-        // {
-        //     var user = (HttpContext.Items["User"] as PlayerDto);
-        //     req.SetUser(user.Id);
-        //     req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
-        //     return await _service.AddProgressList(req, user);
-        // }
-        //
-        //
+        
+        /// <summary>
+        /// playera ait body partlari doner
+        /// </summary>
+        /// <remarks>
+        /// ### DETAILS ###
+        /// <br/>
+        /// <br/>
+        /// Input: BaseRequest
+        /// <br/>
+        /// Output: TDResponse &lt; List &lt; PlayerBodyPartDTO &gt; &gt;
+        /// </remarks>Task<TDResponse<List<PlayerBodyPartDTO>>> GetPlayerBodyParts(BaseRequest req, PlayerDTO player)
+        [LoginRequired]
+        [HttpPost("GetPlayerBodyParts")]
+        public async Task<TDResponse<List<PlayerBodyPartDTO>>> GetPlayerBodyParts([FromBody] BaseRequest req)
+        {
+            var user = (HttpContext.Items["User"] as PlayerDTO);
+            req.SetUser(user.Id);
+            req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
+            return await _service.GetPlayerBodyParts(req, user);
+        }        
+        
+        /// <summary>
+        /// playera ait bodyleri doner
+        /// </summary>
+        /// <remarks>
+        /// ### DETAILS ###
+        /// <br/>
+        /// <br/>
+        /// Input: BaseRequest
+        /// <br/>
+        /// Output: TDResponse &lt; List &lt; PlayerCleanerDTO &gt; &gt;
+        /// </remarks>
+        [LoginRequired]
+        [HttpPost("GetPlayerBodies")]
+        public async Task<TDResponse<List<PlayerCleanerDTO>>> GetPlayerBodies([FromBody] BaseRequest req)
+        {
+            var user = (HttpContext.Items["User"] as PlayerDTO);
+            req.SetUser(user.Id);
+            req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
+            return await _service.GetPlayerBodies(req, user);
+        }
+        
+                
+        /// <summary>
+        /// playera ait ayarlanmis warmachine i doner
+        /// </summary>
+        /// <remarks>
+        /// ### DETAILS ###
+        /// <br/>
+        /// <br/>
+        /// Input: BaseRequest
+        /// <br/>
+        /// Output: TDResponse &lt; PlayerCleanerDTO &gt;
+        /// </remarks>
+        [LoginRequired]
+        [HttpPost("GetPlayerWarMachine")]
+        public async Task<TDResponse<PlayerWarMachineDTO>> GetPlayerWarMachine([FromBody] BaseRequest req)
+        {
+            var user = (HttpContext.Items["User"] as PlayerDTO);
+            req.SetUser(user.Id);
+            req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
+            return await _service.GetPlayerWarMachine(req, user);
+        }        
+                
+        /// <summary>
+        /// random bir enemy araci getirir
+        /// </summary>
+        /// <remarks>
+        /// ### DETAILS ###
+        /// <br/>
+        /// <br/>
+        /// Input: BaseRequest
+        /// <br/>
+        /// Output: TDResponse  &lt; EnemyWarMachineDTO &gt;
+        /// </remarks>
+        [LoginRequired]
+        [HttpPost("GetEnemyWarMachine")]
+        public async Task<TDResponse<EnemyWarMachineDTO>> GetEnemyWarMachine([FromBody] BaseRequest req)
+        {
+            var user = (HttpContext.Items["User"] as PlayerDTO);
+            req.SetUser(user.Id);
+            req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
+            return await _service.GetEnemyWarMachine(req, user);
+        }
+
+        /// <summary>
+        /// playerin 
+        /// </summary>
+        /// <remarks>
+        /// ### DETAILS ###
+        /// <br/>
+        /// <br/>
+        /// Input: BaseRequest &lt; SetWarMachineReq &gt;
+        /// <br/>
+        /// Output: TDResponse
+        /// </remarks>
+        [LoginRequired]
+        [HttpPost("SetPlayerWarMachine")]
+        public async Task<TDResponse> SetPlayerWarMachine([FromBody] BaseRequest<SetWarMachineReq> req)
+        {
+            var user = (HttpContext.Items["User"] as PlayerDTO);
+            req.SetUser(user.Id);
+            req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
+            return await _service.SetPlayerWarMachine(req, user);
+        }
         
         
 
