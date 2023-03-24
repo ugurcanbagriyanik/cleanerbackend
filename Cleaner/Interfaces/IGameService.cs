@@ -11,5 +11,8 @@ namespace Cleaner.Interfaces
         Task<TDResponse<PlayerWarMachineDTO>> GetPlayerWarMachine(BaseRequest req, PlayerDTO player);
         Task<TDResponse<EnemyWarMachineDTO>> GetEnemyWarMachine(BaseRequest req, PlayerDTO player);
         Task<TDResponse> SetPlayerWarMachine(BaseRequest<SetWarMachineReq> req, PlayerDTO player);
+
+        Task<TDResponse<PlayerBodyPartDTO>> GetBodyPartChest(BaseRequest<int> req, PlayerDTO player);
+        Task<TDResponse<PlayerCleanerDTO>> GetCleanerChest(BaseRequest<int> req, PlayerDTO player);
     }
 }

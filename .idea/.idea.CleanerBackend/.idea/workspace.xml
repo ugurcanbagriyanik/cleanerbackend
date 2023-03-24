@@ -6,20 +6,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3063b3e9-f054-472f-8fb6-46c8e3183fc8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CleanerBackend/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CleanerBackend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CleanerBackend/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cleaner/Controllers/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cleaner/Controllers/GameController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cleaner/Interfaces/IGameService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cleaner/Interfaces/IGameService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cleaner/MapperProfiles/GameMapperProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cleaner/MapperProfiles/GameMapperProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cleaner/Models/EnemyWarMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cleaner/Models/EnemyWarMachineDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cleaner/Models/GeneratableBodyPart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cleaner/Models/GeneratableBodyPartDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cleaner/Models/GeneratableCleaner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cleaner/Models/GeneratableCleanerDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cleaner/Models/PlayerBodyPart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cleaner/Models/PlayerBodyPartDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cleaner/Models/PlayerCleaner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cleaner/Models/PlayerCleanerDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cleaner/Models/PlayerWarMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cleaner/Models/PlayerWarMachineDTO.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cleaner/Models/PlayerWarMachinePart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cleaner/Models/PlayerWarMachinePartDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cleaner/Services/GameService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cleaner/Services/GameService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SharedLibrary/Models/BaseRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SharedLibrary/Models/BaseRequest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,32 +17,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/227ed75384c24c09bd6a4ae4ff4c1534a23898/07/1c6ad0bc/IList`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/227ed75384c24c09bd6a4ae4ff4c1534a23898/61/d8eef3ef/IList.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c6ad457575d35dcbff26c9a5e3fb1d92f1d3c55f25ef6ebf475367b5d8/List.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/575c31ecc35a636b6f962cb71d53992552941a18982aae1c8e6c16305cc3761b/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/227ed75384c24c09bd6a4ae4ff4c1534a23898/07/1c6ad0bc/IList`1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -69,7 +37,7 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.Cleaner">
+  <component name="RunManager" selected="Docker.all-up">
     <configuration name="Cleaner" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/Cleaner/Cleaner.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
@@ -134,7 +102,12 @@
       <workItem from="1678404556417" duration="6000" />
       <workItem from="1678557033606" duration="210000" />
       <workItem from="1678557279684" duration="902000" />
-      <workItem from="1678626726101" duration="14498000" />
+      <workItem from="1678626726101" duration="15376000" />
+      <workItem from="1678711300936" duration="366000" />
+      <workItem from="1678711715354" duration="598000" />
+      <workItem from="1678714418839" duration="2749000" />
+      <workItem from="1678749249039" duration="1292000" />
+      <workItem from="1679240629169" duration="5140000" />
     </task>
     <servers />
   </component>

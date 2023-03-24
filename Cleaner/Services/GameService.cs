@@ -247,5 +247,83 @@ namespace Cleaner.Services
          }
         
         
+                
+        public async Task<TDResponse<PlayerCleanerDTO>> GetCleanerChest(BaseRequest<int> req, PlayerDTO player)
+        {
+            TDResponse<PlayerCleanerDTO> response = new TDResponse<PlayerCleanerDTO>();
+            var info = InfoDetail.CreateInfo(req, "GetBodyChest");
+            try
+            {
+                
+                var randomPlayerCleaner =await _context.GeneratableCleaner.Where(l=>l.Rarity==req.Data).OrderBy(r => Guid.NewGuid()).FirstOrDefaultAsync();
+                
+                var ent = new PlayerCleaner()
+                {
+                    PlayerId = player.Id,
+                    IsActive = true,
+                    GeneratableCleanerId = randomPlayerCleaner?.Id ?? 1
+                };
+                
+                
+                await _context.AddAsync(ent);
+                await _context.SaveChangesAsync();
+                
+                
+
+
+                response.Data =await _mapper.ProjectTo<PlayerCleanerDTO>(_context.PlayerCleaner.Where(l=>l.Id==ent.Id)).FirstOrDefaultAsync();
+                response.SetSuccess();
+                info.AddInfo(OperationMessages.Success);
+                _logger.LogInformation(info.ToString());
+            }
+            catch (Exception e)
+            {
+                response.SetError(OperationMessages.DbError);
+                info.SetException(e);
+                _logger.LogError(info.ToString());
+            }
+        
+            return response;
+        }
+        
+        
+        public async Task<TDResponse<PlayerBodyPartDTO>> GetBodyPartChest(BaseRequest<int> req, PlayerDTO player)
+        {
+            TDResponse<PlayerBodyPartDTO> response = new TDResponse<PlayerBodyPartDTO>();
+            var info = InfoDetail.CreateInfo(req, "GetBodyPartChest");
+            try
+            {
+                
+                var randomBodyPart =await _context.GeneratableBodyPart.Where(l=>l.Rarity==req.Data).OrderBy(r => Guid.NewGuid()).FirstOrDefaultAsync();
+                
+                var ent = new PlayerBodyPart()
+                {
+                    PlayerId = player.Id,
+                    IsActive = true,
+                    GeneratableBodyPartId = randomBodyPart?.Id ?? 1
+                };
+                
+                
+                await _context.AddAsync(ent);
+                await _context.SaveChangesAsync();
+                
+                
+
+
+                response.Data =await _mapper.ProjectTo<PlayerBodyPartDTO>(_context.PlayerBodyPart.Where(l=>l.Id==ent.Id)).FirstOrDefaultAsync();
+                response.SetSuccess();
+                info.AddInfo(OperationMessages.Success);
+                _logger.LogInformation(info.ToString());
+            }
+            catch (Exception e)
+            {
+                response.SetError(OperationMessages.DbError);
+                info.SetException(e);
+                _logger.LogError(info.ToString());
+            }
+        
+            return response;
+        }
+        
     }
 }

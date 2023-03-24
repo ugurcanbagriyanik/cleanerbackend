@@ -82,8 +82,8 @@ namespace Cleaner.Controllers
             req.SetUser(user.Id);
             req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
             return await _service.GetPlayerWarMachine(req, user);
-        }        
-                
+        }
+
         /// <summary>
         /// random bir enemy araci getirir
         /// </summary>
@@ -125,7 +125,48 @@ namespace Cleaner.Controllers
             req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
             return await _service.SetPlayerWarMachine(req, user);
         }
-        
+                     
+        /// <summary>
+        /// verilen rarity'e gore playera random bir body part ekler, eklenen bodyparti doner
+        /// </summary>
+        /// <remarks>
+        /// ### DETAILS ###
+        /// <br/>
+        /// <br/>
+        /// Input: BaseRequest &lt; int &gt; //Not:Rarity
+        /// <br/>
+        /// Output: TDResponse  &lt; PlayerBodyPartDTO &gt;
+        /// </remarks>
+        [LoginRequired]
+        [HttpPost("GetBodyPartChest")]
+        public async Task<TDResponse<PlayerBodyPartDTO>> GetBodyPartChest([FromBody] BaseRequest<int> req)
+        {
+            var user = (HttpContext.Items["User"] as PlayerDTO);
+            req.SetUser(user.Id);
+            req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
+            return await _service.GetBodyPartChest(req, user);
+        }
+                             
+        /// <summary>
+        /// verilen rarity'e gore playera random bir cleaner ekler, eklenen clenaeri doner
+        /// </summary>
+        /// <remarks>
+        /// ### DETAILS ###
+        /// <br/>
+        /// <br/>
+        /// Input: BaseRequest &lt; int &gt; //Not:Rarity
+        /// <br/>
+        /// Output: TDResponse  &lt; PlayerCleanerDTO &gt;
+        /// </remarks>
+        [LoginRequired]
+        [HttpPost("GetCleanerChest")]
+        public async Task<TDResponse<PlayerCleanerDTO>> GetCleanerChest([FromBody] BaseRequest<int> req)
+        {
+            var user = (HttpContext.Items["User"] as PlayerDTO);
+            req.SetUser(user.Id);
+            req.SetIp(HttpContext.Connection.RemoteIpAddress?.ToString());
+            return await _service.GetCleanerChest(req, user);
+        }
         
 
     }
